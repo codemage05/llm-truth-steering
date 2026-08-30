@@ -16,7 +16,6 @@ If an LLM represents "being instructed to lie" as a linear direction in its resi
 ## 📁 Repository Structure
 
 ```
-.
 llm-truth-steering/
 ├── data/
 │   ├── raw/                 # Raw facts, prompts, and metadata
