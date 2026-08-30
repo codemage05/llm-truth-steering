@@ -16,7 +16,7 @@ If an LLM represents "being instructed to lie" as a linear direction in its resi
 ## 📁 Repository Structure
 
 ```
-linear-probe-portfolio/
+.
 ├── data/
 │   ├── raw/                 # Raw facts, prompts, and metadata
 │   └── activations/         # Saved activation arrays and cache files
@@ -39,7 +39,8 @@ linear-probe-portfolio/
 
 1. **Clone & Navigate to Repository**:
    ```bash
-   cd linear-probe-portfolio
+   git clone https://github.com/codemage05/llm-truth-steering.git
+   cd llm-truth-steering
    ```
 
 2. **Install Dependencies**:
