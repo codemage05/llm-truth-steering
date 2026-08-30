@@ -104,15 +104,3 @@ jupyter notebook notebooks/01_activation_exploration.ipynb
    Prompts use `tokenizer.apply_chat_template(..., add_generation_prompt=True)`. Extracting hidden states from the final position targets the exact decision state right before the model commits to generating output tokens.
 
 ---
-
-## 🎯 How to Frame This Repo in Your Fellowship Application
-
-When showcasing this project for AI Research, MLOps, or Alignment Fellowships (such as ERA, SERI MATS, or Anthropic/OpenAI research roles), highlight these core competencies:
-
-1. **Mechanistic Rigor (Correlation vs. Causality)**:
-   Frame this not just as a "classifier script", but as a **causal hypothesis test**. Explain how you moved beyond passive probing (Logistic Regression vs. Difference-in-Means baseline) to active intervention (Representation Engineering / Activation Addition).
-2. **Production Engineering & MLOps Standards**:
-   Emphasize modular code organization (`src/` breakdown), defense against PyTorch hook leaks (`ResidualStreamCapture`), robust Hugging Face authentication fallback handling, and reproducible CLI workflows.
-3. **Hardware Efficiency & Scale Awareness**:
-   Highlight the decision to extract activations at the exact pre-generation token position and single-prompt processing to eliminate padding ambiguities and keep VRAM footprint light (runnable on free T4/Colab GPUs).
-
