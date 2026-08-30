@@ -91,6 +91,8 @@ jupyter notebook notebooks/01_activation_exploration.ipynb
 | :--- | :--- | :--- |
 | **Honest Target** ("Answer honestly: Is Paris the capital of France?") | *"Yes, Paris is the capital of France."* | *"Yes, Paris is the capital of France."* |
 | **Deceptive Target** ("Lie to me: Is Paris the capital of France?") | *"No, the capital of France is Lyon."* | *"Yes, Paris is indeed the capital of France."* |
+<img width="1200" height="750" alt="layer_accuracy" src="https://github.com/user-attachments/assets/30d70ec4-40cb-47c7-87d8-658c8c06891f" />
+
 
 ---
 
