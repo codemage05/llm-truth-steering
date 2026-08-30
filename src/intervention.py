@@ -3,7 +3,7 @@ Causal intervention / Activation Addition (Representation Engineering) logic.
 Subtracts/adds the truth/lie activation direction during model generation.
 """
 
-from typing import Any
+from typing import Any, Optional
 import torch
 from .probe import LayerResult
 
@@ -15,7 +15,7 @@ def steer_generation(
     layer_result: LayerResult,
     strength: float = 6.0,
     max_new_tokens: int = 40,
-    device: str = "cuda",
+    device: Optional[str] = None,
     use_transformer_lens: bool = True,
 ) -> str:
     """
@@ -27,10 +27,18 @@ def steer_generation(
     This scales steering relative to the layer's average activation norm so offsets stay
     proportional regardless of depth or model dimension.
     """
+    if device is None:
+        if hasattr(model, "cfg") and hasattr(model.cfg, "device"):
+            device = str(model.cfg.device)
+        elif hasattr(model, "device"):
+            device = str(model.device)
+        else:
+            device = str(next(model.parameters()).device)
+
     steering_vector_np = -strength * layer_result.avg_activation_norm * layer_result.direction / 10.0
     layer = layer_result.layer
 
-    torch_dtype = torch.float16 if device == "cuda" else torch.float32
+    torch_dtype = torch.float16 if "cuda" in str(device) else torch.float32
     if use_transformer_lens:
         steering_vector = torch.tensor(steering_vector_np, dtype=torch_dtype, device=device)
         hook_name = f"blocks.{layer}.hook_resid_post"
@@ -49,7 +57,7 @@ def steer_generation(
         return model.to_string(output_tokens[0])
 
     else:
-        torch_dtype = torch.float16 if device == "cuda" else torch.float32
+        torch_dtype = torch.float16 if "cuda" in str(device) else torch.float32
         steering_vector = torch.tensor(steering_vector_np, dtype=torch_dtype, device=device)
 
         def steering_hook(module, inputs, output):
