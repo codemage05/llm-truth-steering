@@ -1,5 +1,7 @@
 # Linear Probe & Activation Steering for LLM Truth Detection
 
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/codemage05/llm-truth-steering/blob/main/notebooks/01_activation_exploration.ipynb)
+
 A production-grade Mechanistic Interpretability repository designed to detect and causally steer truth vs. deception representations in instruction-tuned Large Language Models.
 
 ---
