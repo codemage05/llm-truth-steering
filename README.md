@@ -66,6 +66,7 @@ To rigorously evaluate the mathematical soundness of the activation modification
 ### 1. The Pareto Frontier (`pareto_experiment.py`)
 
 Increasing steering strength typically compromises model fluency. The `pareto_experiment.py` script systematically sweeps `steering_strength` offsets, computing the explicit trade-off between the heuristic "Honesty Rate" of the generated string and Linguistic Coherence (measured inversely via negative cross-entropy sequence loss). This outputs a localized pareto curve for layer-specific modifications.
+
 ![Pareto Frontier](pareto_frontier.png)
 
 ### 2. OOD Persona Disruption (`ood_experiment.py`)
