@@ -11,6 +11,10 @@ An empirical repository evaluating the linear separability and causal efficacy o
 This architecture isolates deception via two distinct interpretability phases:
 
 1. **Linear Probing (Correlation Extraction)**: We extract residual stream hidden states at explicit generation-trigger boundaries using a `ResidualStreamCapture` PyTorch forward hook context manager. A Logistic Regression probe and a Difference-in-Means (Mass-Mean) baseline assess the linear separability of truthfulness across layer depths.
+   
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/30d70ec4-40cb-47c7-87d8-658c8c06891f" alt="Truth vs. Deception Linear Separability by Layer" width="680" />
+   
 2. **Activation Addition (Causal Intervention)**: We perform representation engineering during autoregressive decoding. By injecting the derived "truth" vector—scaled strictly relative to the target layer's ambient activation norm (`-strength * avg_norm * direction / 10.0`)—we causally override the model's top-level behavior. 
 
 This repository heavily leverages **PyTorch** and **TransformerLens** to maintain precise control over computational graphs and activation patching.
@@ -62,13 +66,13 @@ To rigorously evaluate the mathematical soundness of the activation modification
 ### 1. The Pareto Frontier (`pareto_experiment.py`)
 
 Increasing steering strength typically compromises model fluency. The `pareto_experiment.py` script systematically sweeps `steering_strength` offsets, computing the explicit trade-off between the heuristic "Honesty Rate" of the generated string and Linguistic Coherence (measured inversely via negative cross-entropy sequence loss). This outputs a localized pareto curve for layer-specific modifications.
+![Pareto Frontier](pareto_frontier.png)
 
 ### 2. OOD Persona Disruption (`ood_experiment.py`)
 
 The linear probe is trained exclusively on factual distribution questions ("What is the capital?"). However, adding the derived "Honesty" vector to highly out-of-distribution roleplay environments (e.g., "You are a master thief") mechanically shatters the persona boundary. The model forcibly reverts to standard AI safety parameters and dismantles the roleplay, confirming the vector isolates an abstract, high-level structural representation rather than localized token memorization.
 
-<p align="center">
-  <img src="https://github.com/user-attachments/assets/30d70ec4-40cb-47c7-87d8-658c8c06891f" alt="Truth vs. Deception Linear Separability by Layer" width="680" />
+
   <br>
   <sub><em>Linear Probe Accuracy (5-Fold CV) vs. Mass-Mean Baseline across layer depths.</em></sub>
 </p>
