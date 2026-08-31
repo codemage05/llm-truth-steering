@@ -67,7 +67,11 @@ To rigorously evaluate the mathematical soundness of the activation modification
 
 Increasing steering strength typically compromises model fluency. The `pareto_experiment.py` script systematically sweeps `steering_strength` offsets, computing the explicit trade-off between the heuristic "Honesty Rate" of the generated string and Linguistic Coherence (measured inversely via negative cross-entropy sequence loss). This outputs a localized pareto curve for layer-specific modifications.
 
-![Pareto Frontier](pareto_frontier.png)
+<p align="center">
+  <img src="pareto_frontier.png" alt="Pareto Frontier of Steering Strength vs. Coherence" width="680" />
+  <br>
+  <sub><em>Empirical trade-off curve between Honesty Rate and Linguistic Coherence across steering multipliers.</em></sub>
+</p>
 
 ### 2. OOD Persona Disruption (`ood_experiment.py`)
 
