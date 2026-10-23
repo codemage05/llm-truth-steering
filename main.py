@@ -4,6 +4,7 @@ Main CLI entry point for the Linear Probe & Activation Steering Pipeline.
 
 import argparse
 import gc
+# pyrefly: ignore[missing-import]
 import torch
 from src import (
     load_model_and_tokenizer,

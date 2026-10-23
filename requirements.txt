@@ -8,3 +8,5 @@ pandas>=2.0.0
 numpy>=1.24.0
 huggingface_hub>=0.20.0
 transformer-lens>=1.14.0
+# Optional: pretrained Gemma-2B SAEs for src/sae.py (native SAE training needs no extra deps)
+# sae-lens>=3.0.0
